@@ -1,0 +1,527 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/* ========================================
+   Techspire Design System - Blue & Gold Theme
+   Matching https://techspire.edu.np branding
+   ======================================== */
+
+@theme {
+    /* Fonts - Modern professional academia fonts */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+
+    /* Primary Colors - Techspire Dark Red */
+    --color-techspire-primary: #8b0000;
+    --color-techspire-secondary: #b91c1c;
+    --color-techspire-accent: #f59e0b;
+    --color-techspire-dark: #2b0a0a;
+    --color-techspire-light: #fff7f7;
+
+    /* Primary palette - 9-step deep blue scale */
+    --color-primary-50: #fff1f2;
+    --color-primary-100: #ffe4e6;
+    --color-primary-200: #fecaca;
+    --color-primary-300: #fca5a5;
+    --color-primary-400: #f87171;
+    --color-primary-500: #ef4444;
+    --color-primary-600: #dc2626;
+    --color-primary-700: #b91c1c;
+    --color-primary-800: #991b1b;
+    --color-primary-900: #8b0000;
+
+    /* Accent palette - Gold/Amber for CTAs and highlights */
+    --color-accent-50: #fffbeb;
+    --color-accent-100: #fef3c7;
+    --color-accent-200: #fde68a;
+    --color-accent-300: #fcd34d;
+    --color-accent-400: #fbbf24;
+    --color-accent-500: #f59e0b;
+    --color-accent-600: #d97706;
+    --color-accent-700: #b45309;
+    --color-accent-800: #92400e;
+    --color-accent-900: #78350f;
+
+    /* Status colors - semantic and accessible */
+    --color-available: #10b981;
+    --color-booked: #ef4444;
+    --color-pending: #f59e0b;
+    --color-disabled: #94a3b8;
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+    --color-info: #3b82f6;
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Selection color - uses Techspire blue */
+/* Selection color - uses Techspire dark red */
+::selection {
+    background-color: rgba(139, 0, 0, 0.12);
+    color: #2b0a0a;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ========================================
+   Button Components
+   ======================================== */
+
+:root {
+    --hover-duration: 200ms;
+    --hover-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Primary Button - Deep Blue */
+.btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-primary-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-700 focus:ring-offset-2;
+    transition: all var(--hover-duration) var(--hover-easing);
+}
+
+.btn-primary:hover {
+    @apply bg-primary-800;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Accent Button - Gold CTA */
+.btn-accent {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2;
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+    transition: all var(--hover-duration) var(--hover-easing);
+}
+
+.btn-accent:hover {
+    background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+.btn-accent:active {
+    transform: translateY(0);
+}
+
+/* Secondary Button - Blue Outline */
+.btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border-2 border-primary-700 bg-transparent px-4 py-2 text-sm font-semibold text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    transition: all var(--hover-duration) var(--hover-easing);
+}
+
+.btn-secondary:hover {
+    @apply bg-primary-900 text-white border-primary-900;
+    transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Danger Button */
+.btn-danger {
+    @apply inline-flex items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2;
+    transition: all var(--hover-duration) var(--hover-easing);
+}
+
+.btn-danger:hover {
+    @apply bg-red-700;
+}
+
+/* Success Button */
+.btn-success {
+    @apply inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
+    transition: all var(--hover-duration) var(--hover-easing);
+}
+
+.btn-success:hover {
+    @apply bg-emerald-700;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .btn-primary,
+    .btn-secondary,
+    .btn-accent,
+    .btn-danger,
+    .btn-success {
+        transition: none !important;
+    }
+    
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-accent:hover,
+    .btn-primary:active,
+    .btn-secondary:active,
+    .btn-accent:active {
+        transform: none !important;
+    }
+}
+
+/* ========================================
+   Navigation Styles
+   ======================================== */
+
+.nav-link-active {
+    @apply font-semibold text-accent-500;
+    border-bottom: 2px solid #f59e0b;
+}
+
+.nav-link {
+    @apply text-white/90 transition-colors hover:text-accent-400;
+}
+
+/* ========================================
+   Accessibility & Focus States
+   ======================================== */
+
+.skip-link {
+    @apply absolute -top-10 left-4 z-[100] rounded-md bg-primary-900 px-4 py-2 text-sm font-semibold text-white transition-all focus:top-4;
+}
+
+*:focus-visible {
+    @apply outline-none ring-2 ring-primary-600 ring-offset-2;
+}
+
+*:focus:not(:focus-visible) {
+    @apply outline-none ring-0;
+}
+
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+    @apply ring-2 ring-primary-600 ring-offset-2;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    @apply border-primary-600 ring-2 ring-primary-500/20;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .btn-primary,
+    .btn-secondary,
+    .btn-accent {
+        @apply border-2 border-current;
+    }
+}
+
+/* ========================================
+   Card Components
+   ======================================== */
+
+.card {
+    @apply rounded-xl border border-slate-200 bg-white shadow-sm;
+}
+
+.card-header {
+    @apply border-b border-slate-100 px-5 py-4;
+}
+
+.card-body {
+    @apply p-5;
+}
+
+/* ========================================
+   Badge Components
+   ======================================== */
+
+.badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+}
+
+.badge-success {
+    @apply bg-emerald-100 text-emerald-800;
+}
+
+.badge-warning {
+    @apply bg-amber-100 text-amber-800;
+}
+
+.badge-danger {
+    @apply bg-red-100 text-red-800;
+}
+
+.badge-info {
+    @apply bg-blue-100 text-blue-800;
+}
+
+.badge-neutral {
+    @apply bg-slate-100 text-slate-700;
+}
+
+.badge-primary {
+    @apply bg-primary-100 text-primary-800;
+}
+
+/* ========================================
+   Status Indicators
+   ======================================== */
+
+.status-available {
+    @apply bg-emerald-500;
+}
+
+.status-occupied {
+    @apply bg-red-500;
+}
+
+.status-booked {
+    @apply bg-amber-500;
+}
+
+.status-maintenance {
+    @apply bg-slate-400;
+}
+
+/* ========================================
+   Table Styles
+   ======================================== */
+
+.table-container {
+    @apply overflow-x-auto rounded-xl border border-slate-200 bg-white;
+}
+
+.table-container table {
+    @apply w-full text-sm;
+}
+
+.table-container thead {
+    @apply bg-slate-50 border-b border-slate-200;
+}
+
+.table-container th {
+    @apply px-4 py-3 text-left font-semibold text-slate-700;
+}
+
+.table-container td {
+    @apply px-4 py-3;
+}
+
+.table-container tbody tr {
+    @apply border-t border-slate-100 transition-colors hover:bg-slate-50;
+}
+
+/* ========================================
+   Empty State
+   ======================================== */
+
+.empty-state {
+    @apply flex flex-col items-center justify-center py-12 text-center;
+}
+
+.empty-state-icon {
+    @apply mb-4 h-12 w-12 text-slate-300;
+}
+
+.empty-state-title {
+    @apply text-lg font-semibold text-slate-700;
+}
+
+.empty-state-description {
+    @apply mt-1 text-sm text-slate-500;
+}
+
+/* ========================================
+   Loading Spinner
+   ======================================== */
+
+.spinner {
+    @apply inline-block h-5 w-5 animate-spin rounded-full border-2 border-current border-t-transparent;
+}
+
+/* ========================================
+   Hover Animation Utilities
+   ======================================== */
+
+.hover-raise {
+    transition: transform var(--hover-duration) var(--hover-easing),
+                box-shadow var(--hover-duration) var(--hover-easing);
+}
+
+.hover-raise:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hover-raise:active {
+    transform: translateY(0);
+}
+
+.hover-scale {
+    transition: transform var(--hover-duration) var(--hover-easing),
+                box-shadow var(--hover-duration) var(--hover-easing);
+}
+
+.hover-scale:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.hover-scale:active {
+    transform: scale(0.98);
+}
+
+/* Override glow/card hover colors to match dark-red theme */
+.hover-glow:hover {
+    box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.15);
+}
+
+.hover-card:hover {
+    border-color: #8b000033;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.hover-glow {
+    transition: box-shadow var(--hover-duration) var(--hover-easing);
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+}
+
+.hover-card {
+    transition: transform var(--hover-duration) var(--hover-easing),
+                box-shadow var(--hover-duration) var(--hover-easing),
+                border-color var(--hover-duration) var(--hover-easing);
+}
+
+.hover-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-color: rgba(30, 58, 138, 0.2);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .hover-raise,
+    .hover-scale,
+    .hover-glow,
+    .hover-card {
+        transition: none !important;
+    }
+    
+    .hover-raise:hover,
+    .hover-scale:hover,
+    .hover-card:hover {
+        transform: none !important;
+    }
+}
+
+/* ========================================
+   Form Styles
+   ======================================== */
+
+.form-input {
+    @apply w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm focus:border-primary-600 focus:ring-2 focus:ring-primary-500/20 focus:outline-none transition-colors;
+}
+
+.form-label {
+    @apply block text-sm font-medium text-slate-700 mb-1.5;
+}
+
+.form-select {
+    @apply w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm focus:border-primary-600 focus:ring-2 focus:ring-primary-500/20 focus:outline-none transition-colors appearance-none bg-white;
+}
+
+/* ========================================
+   Admin Header Styles
+   ======================================== */
+
+.admin-header {
+    background: linear-gradient(135deg, #8b0000 0%, #b91c1c 100%);
+}
+
+.admin-header .brand-link img {
+    filter: none !important;
+}
+
+.admin-header .brand-link:hover {
+    opacity: 0.9;
+}
+
+.admin-header .brand-link > div {
+    transition: box-shadow 0.2s ease;
+}
+
+.admin-header .brand-link:hover > div {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   Stats Card Gradient Styles
+   ======================================== */
+
+.stats-card-blue {
+    background: linear-gradient(135deg, #8b0000 0%, #b91c1c 100%);
+}
+
+.stats-card-gold {
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+}
+
+.stats-card-green {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
+.stats-card-red {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+}
+
+/* ========================================
+   Calendar/Event Colors
+   ======================================== */
+
+.event-booking {
+    @apply bg-primary-500 text-white;
+}
+
+.event-due-date {
+    @apply bg-amber-500 text-white;
+}
+
+.event-overdue {
+    @apply bg-red-500 text-white;
+}
+
+.event-closure {
+    @apply bg-slate-500 text-white;
+}
